@@ -25,32 +25,29 @@ set clipboard=unnamedplus
 
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdTree'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox 
 
 let mapleader = " "
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>t :NERDTreeFocus<CR>
 
-map <f5> :call CompileRun()<CR>
-func! CompileRun()
-    if &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java -cp %:p:h %:t:r"
-    elseif &filetype == 'python'
-        exec "!time python3 %"
-    endif
-endfunc
+nnoremap <leader>y ggVG"+y"<CR>
+nnoremap <C-H> <C-W><C-H><CR>
+nnoremap <C-L> <C-W><C-L><CR>
 
-
-
+filetype on
+filetype indent on
+set mp=g++\ -O2\ -Wall\ --std=c++17\ -Wno-unused-result\ %:r.cpp\ -o\ %:r
+nmap <F2> :vs %:r.in <CR>
+nmap <F3> :!time ./%:r < %:r.in <CR>
+autocmd filetype cpp nnoremap <F4> :w <CR> :make<CR>
+autocmd filetype cpp nnoremap <F5> :w <bar> :make <bar> :!time ./%:r < %:r.in <CR>
+autocmd filetype python nnoremap <F5> :w <bar> !python3 %:r.py < %:r.in <CR>
