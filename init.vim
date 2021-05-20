@@ -22,15 +22,16 @@ set scrolloff=8
 set signcolumn=yes
 set colorcolumn=80
 set clipboard=unnamedplus
+set splitbelow splitright " set default position for where a split opens
 
 call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
+Plug 'gruvbox-community/gruvbox'
 Plug 'scrooloose/nerdTree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 colorscheme gruvbox 
@@ -40,14 +41,19 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>t :NERDTreeFocus<CR>
 
 nnoremap <leader>y ggVG"+y"<CR>
-nnoremap <C-H> <C-W><C-H><CR>
-nnoremap <C-L> <C-W><C-L><CR>
 
 filetype on
 filetype indent on
-set mp=g++\ -O2\ -Wall\ --std=c++17\ -Wno-unused-result\ %:r.cpp\ -o\ %:r
-nmap <F2> :vs %:r.in <CR>
-nmap <F3> :!time ./%:r < %:r.in <CR>
-autocmd filetype cpp nnoremap <F4> :w <CR> :make<CR>
-autocmd filetype cpp nnoremap <F5> :w <bar> :make <bar> :!time ./%:r < %:r.in <CR>
-autocmd filetype python nnoremap <F5> :w <bar> !python3 %:r.py < %:r.in <CR>
+
+augroup exe_code
+    autocmd!
+
+    " execute python code
+    autocmd FileType python nnoremap <buffer> <F5>
+                \ :sp<CR> :term python3 %<CR>
+    " execute java code
+    autocmd FileType java nnoremap <buffer> <F5>
+                \ :sp<CR> :term javac %<CR> 
+    autocmd FileType java nnoremap <buffer> <F9>
+                \ :sp<CR> :term java %<CR>
+augroup END
