@@ -58,11 +58,11 @@ augroup exe_code
 
     " execute python code
     autocmd FileType python nnoremap <buffer> <F5>
-                \ :sp<CR> :term python3 %<CR>
+                \ :sp<CR> :term python3 %<CR> :startinsert<CR>
     " execute java code
     autocmd FileType java nnoremap <buffer> <F5>
-                \ :sp<CR> :term javac %<CR> 
+                \ :sp<CR> :term javac %<CR> :startinsert<CR>
     autocmd FileType java nnoremap <buffer> <F9>
-                \ :sp<CR> :term java %<CR>
+                \ :sp<CR> :term java %<CR> :startinsert<CR>
 augroup END
-"testing testing testing
+
