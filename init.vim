@@ -32,9 +32,16 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 call plug#end()
 
+let g:fzf_layout = { 'window' : {'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
+
 colorscheme gruvbox 
+set background=dark
 
 let mapleader = " "
 nnoremap <leader>n :NERDTreeToggle<CR>
@@ -57,3 +64,4 @@ augroup exe_code
     autocmd FileType java nnoremap <buffer> <F9>
                 \ :sp<CR> :term java %<CR>
 augroup END
+
