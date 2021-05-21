@@ -27,7 +27,6 @@ set splitbelow splitright " set default position for where a split opens
 call plug#begin('~/.vim/plugged')
 Plug 'mbbill/undotree'
 Plug 'gruvbox-community/gruvbox'
-Plug 'scrooloose/nerdTree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -39,16 +38,18 @@ call plug#end()
 
 let g:fzf_layout = { 'window' : {'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
-nnoremap <C-P> :Files<CR>
 
 colorscheme gruvbox 
 set background=dark
 
 let mapleader = " "
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>t :NERDTreeFocus<CR>
 
 nnoremap <leader>y ggVG"+y"<CR>
+nnoremap <leader>d ggVGd<CR>
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>v :vsp<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>l :wincmd l<CR>
 
 filetype on
 filetype indent on
