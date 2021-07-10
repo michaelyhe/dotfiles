@@ -34,6 +34,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'preservim/nerdtree' | 
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 call plug#end()
 
 let g:fzf_layout = { 'window' : {'width': 0.8, 'height': 0.8 } }
@@ -50,6 +56,7 @@ nnoremap <leader>p :Files<CR>
 nnoremap <leader>v :vsp<CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 filetype on
 filetype indent on
